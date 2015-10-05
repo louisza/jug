@@ -206,6 +206,10 @@ hello Bart !</code></pre>
 <li><code>req$raw</code> the raw request object as passsed by <code>httpuv</code></li>
 <li><code>req$post_data</code> the post data (has some limitations for now…)</li>
 </ul>
+<p>It has the following functions attached to it:</p>
+<ul>
+<li><code>req$get_header(key)</code> returns the value associated to the specified key in the request (no need to worry about the <code>HTTP_</code> prefix)</li>
+</ul>
 </div>
 <div id="response-res-object" class="section level4">
 <h4>Response (<code>res</code>) object</h4>
