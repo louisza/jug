@@ -10,7 +10,7 @@
 
 <meta name="author" content="Bart Smeets" />
 
-<meta name="date" content="2015-10-05" />
+<meta name="date" content="2015-10-06" />
 
 <title>Jug</title>
 
@@ -70,7 +70,7 @@ img {
 <div id="header">
 <h1 class="title">Jug</h1>
 <h4 class="author"><em>Bart Smeets</em></h4>
-<h4 class="date"><em>2015-10-05</em></h4>
+<h4 class="date"><em>2015-10-06</em></h4>
 </div>
 
 
@@ -93,6 +93,11 @@ jug() %&gt;%
 <p>Jug is a small web development framework for R which relies heavily upon the <code>httpuv</code> package. It’s main focus is to make building APIs for your code as easy as possible.</p>
 <p>Jug is not supposed to be either an especially performant nor an uber stable framework. Other tools (and languages) might be more suited for that. Nevertheless, it tries to make available a set of functions which allow you to easily create APIs for your R code. The flexibility of Jug means that, in theory, you could built an extensive web framework with it (but I don’t especially recommend it).</p>
 </div>
+<div id="getting-started" class="section level2">
+<h2>Getting started</h2>
+<p>For now, Jug is not available on CRAN. To install it, use <code>devtools</code>:</p>
+<pre class="r"><code>devtools::install_github(&quot;Bart6114/jug&quot;)</code></pre>
+</div>
 <div id="the-basics" class="section level2">
 <h2>The basics</h2>
 <div id="the-jug-instance" class="section level3">
@@ -106,8 +111,8 @@ jug()</code></pre>
 <div id="middleware" class="section level3">
 <h3>Middleware</h3>
 <p>In terms of middleware Jug somewhat follows the specification of middleware by <code>Express</code>. In Jug, middleware is a function with access to the <strong>request</strong> (<code>req</code>), <strong>response</strong> (<code>res</code>) and <strong>error</strong> (<code>err</code>) object.</p>
-<p>Multiple middlewares can be defined. Order in which the middlewares are added matters. A request will start with being passed through the first middleware added (more specifically the <code>func</code> specified in it - see next paragraph). It will continue to be passed through the added middlewares until a middleware does not return <code>NULL</code>. Whatever will be passed by the middleware will be set as the response body.</p>
-<p>Most middleware will accept a <code>func</code> argument to which a function should be passed. To this function the <code>req</code>, <code>res</code> and <code>err</code> objects wwill be passed (and thus should accept them). The result of evaluation the specified function will be used as the response body.</p>
+<p>Multiple middlewares can be defined. Order in which the middlewares are added matters. A request will start with being passed through the first middleware added (more specifically the functions specified in it - see next paragraph). It will continue to be passed through the added middlewares until a middleware does not return <code>NULL</code>. Whatever will be passed by that middleware will be set as the response body.</p>
+<p>Most middleware will accept a <code>func</code> or <code>...</code> argument to which respectively a function or multiple functions can be passed. If multiple functions are passed; passing order will be respected. To each function the <code>req</code>, <code>res</code> and <code>err</code> objects will be passed (and thus should accept them). The result of evaluating the function will be used as the response body (if the returned object is not null).</p>
 <div id="method-insensitive-middleware" class="section level4">
 <h4>Method insensitive middleware</h4>
 <p>The <code>use</code> function is a method insensitive middleware specifier. While it is method insensitive, it can be bound to a specific path. If the <code>path</code> argument (accepts a regex string with <code>grepl</code> setting <code>perl=TRUE</code>) is set to <code>NULL</code> it also becomes path insensitive and will process <em>every</em> request.</p>
@@ -236,6 +241,13 @@ hello Bart !</code></pre>
 <div id="serving-the-jug" class="section level3">
 <h3>Serving the Jug</h3>
 <p>Simple call <code>serve_it()</code> at the end of your piping chain (see Hello World! example).</p>
+</div>
+</div>
+<div id="extra-concepts" class="section level2">
+<h2>Extra concepts</h2>
+<div id="multiple-middleware-functions" class="section level3">
+<h3>Multiple middleware functions</h3>
+<p>TODO</p>
 </div>
 </div>
 
