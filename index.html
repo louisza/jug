@@ -10,7 +10,7 @@
 
 <meta name="author" content="Bart Smeets" />
 
-<meta name="date" content="2015-10-06" />
+<meta name="date" content="2015-10-07" />
 
 <title>Jug</title>
 
@@ -70,7 +70,7 @@ img {
 <div id="header">
 <h1 class="title">Jug</h1>
 <h4 class="author"><em>Bart Smeets</em></h4>
-<h4 class="date"><em>2015-10-06</em></h4>
+<h4 class="date"><em>2015-10-07</em></h4>
 </div>
 
 
@@ -105,7 +105,7 @@ jug() %&gt;%
 <p>Everything starts with a Jug instance. This instance is created by simply calling <code>jug()</code>:</p>
 <pre class="r"><code>library(jug)
 jug()</code></pre>
-<pre><code>## [1] &quot;A Jug instance with 0 middlewares attached&quot;</code></pre>
+<pre><code>## A Jug instance with 0 middlewares attached</code></pre>
 <p>Jug is made to work closely with the piping functionality of <code>magrittr</code> (<code>%&gt;%</code>). The rest of the Jug instance is built up by piping the instance through various functions explained below.</p>
 </div>
 <div id="middleware" class="section level3">
@@ -205,7 +205,7 @@ hello Bart !</code></pre>
 <h4>Request (<code>req</code>) object</h4>
 <p>The <code>req</code> object contains the request specifications. It has different attributes:</p>
 <ul>
-<li><code>req$query_params</code> a list of the query parameters contained in the URL</li>
+<li><code>req$params</code> a list of the query parameters contained in the URL</li>
 <li><code>req$path</code> the requested path</li>
 <li><code>req$method</code> the request method</li>
 <li><code>req$raw</code> the raw request object as passsed by <code>httpuv</code></li>
@@ -235,8 +235,14 @@ hello Bart !</code></pre>
 <div id="error-err-object" class="section level4">
 <h4>Error (<code>err</code>) object</h4>
 <p>The <code>err</code> object contains a list of errors, accessible through <code>err$errrors</code>. You can add an error to this list by calling <code>err$set(error)</code>. The error will be converted to a character.</p>
-<p>Have a look at the <code>simple_error_handler</code> middleware function see how an error handler is implemented.</p>
+<p>Have a look at the <code>simple_error_handler</code> middleware function see how you can implement a custom error handler.</p>
 </div>
+</div>
+<div id="url-dispatching" class="section level3">
+<h3>Url dispatching</h3>
+<p>The path parameter in the <code>get</code>, <code>post</code>, … functions is intepreted as a regex pattern.</p>
+<p>If there are named capture groups in the path definition, they will be attached to the <code>req$params</code> object. For example the pattern <code>/test/(?&lt;id&gt;.*)/(?&lt;id2&gt;.*)</code> will result in the variables <code>id</code> and <code>id2</code> (with their respective values) being bound to the <code>req$params</code> object.</p>
+<p>If a path pattern is not started with a start of string <code>^</code> regex token <strong>or</strong> ended with an end of string token <code>$</code>, these will be explicitely inserted at respectively the beginning and end of the path pattern specification. For example the path pattern <code>/</code> will be converted to <code>^/$</code>.</p>
 </div>
 <div id="serving-the-jug" class="section level3">
 <h3>Serving the Jug</h3>
