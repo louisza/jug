@@ -133,6 +133,7 @@ jug() %&gt;%
   get(&quot;/&quot;, function(req, res, err){
     &quot;Hello World!&quot;
   }) %&gt;%
+  simple_error_handler() %&gt;%
   serve_it()</code></pre>
 <pre><code>Serving the jug at http://127.0.0.1:8080</code></pre>
 </div>
@@ -183,7 +184,7 @@ curl: (52) Empty reply from server
 
 $ curl 127.0.0.1:8080
 test 1,2,3!</code></pre>
-<p>Note that in the above error / missing route handling is missing, more on that later.</p>
+<p>Note that in the above error / missing route handling is missing (the server will crash), more on that later.</p>
 </div>
 <div id="method-sensitive-middleware" class="section level3">
 <h3>Method sensitive middleware</h3>
