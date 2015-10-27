@@ -10,7 +10,7 @@
 
 <meta name="author" content="Bart Smeets" />
 
-<meta name="date" content="2015-10-23" />
+<meta name="date" content="2015-10-27" />
 
 <title>Jug</title>
 
@@ -91,7 +91,7 @@ img {
 <div id="header">
 <h1 class="title">Jug</h1>
 <h4 class="author"><em>Bart Smeets</em></h4>
-<h4 class="date"><em>2015-10-23</em></h4>
+<h4 class="date"><em>2015-10-27</em></h4>
 </div>
 
 <div id="TOC">
@@ -123,7 +123,7 @@ img {
 </div>
 
 <blockquote>
-<p><strong>Jug is under development and NOT production ready</strong></p>
+<p><strong>Use with care: Jug is still under heavy development and syntax/logic can change often</strong></p>
 </blockquote>
 <div id="hello-world" class="section level2">
 <h2>Hello World!</h2>
@@ -143,8 +143,10 @@ jug() %&gt;%
 </div>
 <div id="getting-started" class="section level2">
 <h2>Getting started</h2>
-<p>For now, Jug is not available on CRAN. To install it, use <code>devtools</code>:</p>
+<p>To install the latest version use <code>devtools</code>:</p>
 <pre class="r"><code>devtools::install_github(&quot;Bart6114/jug&quot;)</code></pre>
+<p>Or install the CRAN version:</p>
+<pre class="r"><code>install.packags(&quot;jug&quot;)</code></pre>
 </div>
 <div id="the-jug-instance" class="section level2">
 <h2>The Jug instance</h2>
@@ -272,7 +274,7 @@ collected_mw&lt;-
 <h3>Easily using your own functions</h3>
 <p>The main reason Jug was created is to easily allow access to your own custom R functions. The convenience function <code>decorate</code> is built with this in mind.</p>
 <p>If you <code>decorate</code> your own function it will translate all arguments passed in the query string of the request as arguments to your function. It will also pass all headers to the function as arguments. Note that for the passed headers they will be capitalized and prefixed by <code>HTTP_</code> as per <code>httpuv</code>’s internals.</p>
-<p>If your function does not accept a <code>...</code> argument, all query/header parameters that are nor explicitly requested by your function are dropped. If your function requests a <code>req</code>, <code>res</code> or <code>err</code> argument (or <code>...</code>) the corresponding objects will be passed.</p>
+<p>If your function does not accept a <code>...</code> argument, all query/header parameters that are not explicitly requested by your function are dropped. If your function requests a <code>req</code>, <code>res</code> or <code>err</code> argument (or <code>...</code>) the corresponding objects will be passed.</p>
 <pre class="r"><code>say_hello&lt;-function(name){paste(&quot;hello&quot;,name,&quot;!&quot;)}
 
 jug() %&gt;%
