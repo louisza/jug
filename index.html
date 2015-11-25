@@ -10,7 +10,7 @@
 
 <meta name="author" content="Bart Smeets" />
 
-<meta name="date" content="2015-10-27" />
+<meta name="date" content="2015-11-25" />
 
 <title>Jug</title>
 
@@ -91,7 +91,7 @@ img {
 <div id="header">
 <h1 class="title">Jug</h1>
 <h4 class="author"><em>Bart Smeets</em></h4>
-<h4 class="date"><em>2015-10-27</em></h4>
+<h4 class="date"><em>2015-11-25</em></h4>
 </div>
 
 <div id="TOC">
@@ -188,7 +188,7 @@ test 1,2,3!</code></pre>
 </div>
 <div id="method-sensitive-middleware" class="section level3">
 <h3>Method sensitive middleware</h3>
-<p>In the same style ass the request method insensitive middleware, there is request method sensitive middleware available. More specifically, you can use the <code>get</code>, <code>post</code>, <code>put</code> and <code>delete</code> functions.</p>
+<p>In the same style as the request method insensitive middleware, there is request method sensitive middleware available. More specifically, you can use the <code>get</code>, <code>post</code>, <code>put</code> and <code>delete</code> functions.</p>
 <p>This type of middleware is bound to a path using the <code>path</code> argument. If <code>path</code> is set to <code>NULL</code> it will bind to every request to the path, given that it is of the corresponding request type.</p>
 <pre class="r"><code>jug() %&gt;%
   get(path = &quot;/&quot;, function(req, res, err){
@@ -327,6 +327,7 @@ hello Bart !</code></pre>
 <li><code>res$set_status(status)</code> set the status of the response</li>
 <li><code>res$text(body)</code> to explicitely set the body of the response</li>
 <li><code>res$json(obj)</code> converts an object to JSON, sets it as the body and set the correct content type</li>
+<li><code>res$plot(plot_obj, base64=TRUE)</code> return a plot object (default to returning a base64 representation, otherwise returns the actual image)</li>
 </ul>
 </div>
 <div id="error-err-object" class="section level3">
